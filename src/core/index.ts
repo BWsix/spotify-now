@@ -1,23 +1,23 @@
-import { getColorFromURL } from "color-thief-node";
-import spotifyApi from "../spotifyApiProvider";
+import { getCurrentTrackId } from "./getCurrentTrackId";
+import { getImageColor } from "./getImageColor";
+import { getCurrentTrackImageUrl } from "./getCurrentTrackImageUrl";
 
 export async function getColor() {
-  const currentPlayingResult = await spotifyApi.getMyCurrentPlayingTrack();
-  const currentTrackId = currentPlayingResult.body.item?.id;
+  console.log("[fetching data...]");
+
+  const currentTrackId = await getCurrentTrackId();
 
   if (!currentTrackId) {
     console.log("currently not playing.");
     return;
   }
 
-  const currentTrack = await spotifyApi.getTrack(currentTrackId);
-  const imageUrl = currentTrack.body.album.images[0]?.url;
+  const imageUrl = await getCurrentTrackImageUrl(currentTrackId);
 
   if (!imageUrl) {
     console.log("this track dose not have an image.");
     return;
   }
 
-  const colors = getColorFromURL(imageUrl);
-  return colors;
+  return getImageColor(imageUrl);
 }
