@@ -3,6 +3,7 @@ import fs from "fs";
 interface UserData {
   access_token: string;
   refresh_token: string;
+  clientId: string;
 }
 
 export function getUser(): UserData {
