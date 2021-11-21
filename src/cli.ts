@@ -20,7 +20,7 @@ yargs
       const url = await getAuthUrl(clientId, clientSecret);
       console.log(url);
 
-      getToken(clientId, clientSecret);
+      await getToken(clientId, clientSecret);
       console.log("ok!");
     }
   )
