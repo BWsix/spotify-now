@@ -1,23 +1,24 @@
-import { getCurrentTrackId } from "./getCurrentTrackId";
-import { getImageColor } from "./getImageColor";
-import { getCurrentTrackImageUrl } from "./getCurrentTrackImageUrl";
+import { Board, Led } from "johnny-five";
+import { refreshTokenWhenExpire } from "../spotifyApiProvider";
+import { getColor } from "./getColor";
 
-export async function getColor() {
-  console.log("[fetching data...]");
+export async function bootstrap() {
+  const board = new Board({ repl: false });
 
-  const currentTrackId = await getCurrentTrackId();
+  board.on("ready", async () => {
+    const anode = new Led.RGB({
+      pins: [11, 10, 9],
+    });
 
-  if (!currentTrackId) {
-    console.log("currently not playing.");
-    return;
-  }
+    const handleColor = async () => {
+      const color = await refreshTokenWhenExpire(getColor);
 
-  const imageUrl = await getCurrentTrackImageUrl(currentTrackId);
+      // the type definition on this method is wrong. (should accept type of number[])
+      anode.color((color as unknown as string) || "000000");
+    };
 
-  if (!imageUrl) {
-    console.log("this track dose not have an image.");
-    return;
-  }
-
-  return getImageColor(imageUrl);
+    await handleColor();
+    anode.on();
+    board.loop(30 * 1000, handleColor);
+  });
 }

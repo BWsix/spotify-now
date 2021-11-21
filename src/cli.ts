@@ -26,7 +26,7 @@ yargs
     }
   )
   .command("start", "start the app.", {}, () => {
-    const { bootstrap } = require("./main");
+    const { bootstrap } = require("./core");
 
     bootstrap();
   })

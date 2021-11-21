@@ -53,9 +53,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "cli": "ts-node src/cli.ts",
-    "docs": "typedoc --entryPoints src/main.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "start": "ts-node src/main.ts",
     "test": "jest",
     "watch": "nodemon -e ts -w ./src -x yarn ts-node"
   }
