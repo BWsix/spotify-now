@@ -22,5 +22,3 @@ export async function bootstrap() {
     board.loop(30 * 1000, handleColor);
   });
 }
-
-bootstrap();

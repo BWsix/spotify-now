@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
-import { getAuthUrl } from "./spotifyApiProvider/cli/getAuthUrl";
-import { getToken } from "./spotifyApiProvider/cli/getToken";
 
 yargs
   .scriptName("spotify-now")
@@ -15,6 +13,8 @@ yargs
         .positional("secret", { type: "string" });
     },
     async (argv) => {
+      const { getAuthUrl, getToken } = require("./spotifyApiProvider/cli");
+
       const clientId = argv.id as string;
       const clientSecret = argv.secret as string;
 
@@ -25,4 +25,9 @@ yargs
       console.log("ok!");
     }
   )
+  .command("start", "start the app.", {}, () => {
+    const { bootstrap } = require("./main");
+
+    bootstrap();
+  })
   .help().argv;
