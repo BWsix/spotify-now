@@ -1,7 +1,7 @@
 import { Board, Led } from "johnny-five";
 import { main } from "./main";
 
-const board = new Board();
+const board = new Board({ repl: false });
 
 board.on("ready", () => {
   const anode = new Led.RGB({
