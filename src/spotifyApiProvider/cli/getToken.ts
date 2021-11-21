@@ -11,6 +11,6 @@ export async function getToken(clientId: string, clientSecret: string) {
     if (error) return console.error(error);
 
     const { access_token, refresh_token } = res.body;
-    saveUser({ access_token, refresh_token, clientId });
+    saveUser({ access_token, refresh_token, clientId, clientSecret });
   });
 }

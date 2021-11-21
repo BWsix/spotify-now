@@ -4,6 +4,7 @@ interface UserData {
   access_token: string;
   refresh_token: string;
   clientId: string;
+  clientSecret: string;
 }
 
 export function getUser(): UserData {

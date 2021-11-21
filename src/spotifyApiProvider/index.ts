@@ -3,17 +3,23 @@ import SpotifyWebApi from "spotify-web-api-node";
 import { getUser, saveUser } from "./fs_db";
 
 const user = getUser();
+assert(user.access_token, "no access token.");
 assert(user.refresh_token, "no refresh token.");
+assert(user.clientId, "no client id.");
+assert(user.clientSecret, "no client secret.");
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: user.clientId,
   accessToken: user.access_token,
   refreshToken: user.refresh_token,
+  clientId: user.clientId,
+  clientSecret: user.clientSecret,
 });
 
 export default spotifyApi;
 
-export async function refreshTokenWhenExpire(fn: () => unknown) {
+export async function refreshTokenWhenExpire<T>(
+  fn: () => Promise<T> | T
+): Promise<T> {
   try {
     return await fn();
   } catch (error) {
@@ -30,6 +36,7 @@ export async function refreshTokenWhenExpire(fn: () => unknown) {
       access_token,
       refresh_token: user.refresh_token,
       clientId: user.clientId,
+      clientSecret: user.clientSecret,
     });
 
     return await fn();
