@@ -25,6 +25,6 @@ export async function getSpotifyAPi(clientId: string, clientSecret: string) {
   return new SpotifyWebApi({
     clientId,
     clientSecret,
-    redirectUri: "http://localhost",
+    redirectUri: "http://localhost:6969",
   });
 }

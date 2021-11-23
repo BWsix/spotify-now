@@ -22,7 +22,6 @@ yargs
       console.log(url);
 
       await getToken(clientId, clientSecret);
-      console.log("ok!");
     }
   )
   .command("start", "start the app.", {}, async () => {

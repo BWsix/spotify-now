@@ -7,8 +7,7 @@
 yarn global add spotify-now
 
 # 2. Initialize your app by running the following command.
-# after being redirected back to `http://localhost`, extract the `code` from the url query string and paste it to the command prompt
-# (note that you need to add `http://localhost` to your `Redirect URIs` from the spotify dashboard)
+# (note that you need to add `http://localhost:6969` to your `Redirect URIs` from the spotify dashboard)
 spotify-now login --id {spotify-app-id} --secret {spotify-app-secret}
 
 # 3.
