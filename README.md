@@ -23,3 +23,6 @@ spotify-now start
 
 - Troubleshooting - Arduino
   https://github.com/rwaldron/johnny-five/wiki/Getting-Started#troubleshooting
+
+- Spotify for Developers - Dashboard
+  https://developer.spotify.com/dashboard/applications
