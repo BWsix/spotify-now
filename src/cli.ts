@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import chalk from "chalk";
 import yargs from "yargs";
 
 yargs
@@ -20,18 +19,12 @@ yargs
         });
     },
     async (argv) => {
-      const { getAuthUrl, getToken } = await import("./spotifyApiProvider/cli");
+      const { bootstrap } = await import("./spotifyApiProvider/cli");
 
       const clientId = argv.id as string;
       const clientSecret = argv.secret as string;
 
-      const url = await getAuthUrl(clientId, clientSecret);
-      console.log(
-        chalk.yellow("Follow the link below and login to your spotify account:")
-      );
-      console.log(url);
-
-      await getToken(clientId, clientSecret);
+      bootstrap(clientId, clientSecret);
     }
   )
   .command(
