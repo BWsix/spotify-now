@@ -11,7 +11,11 @@ yarn global add spotify-now
 # (note that you need to add `http://localhost` to your `Redirect URIs` from the spotify dashboard)
 spotify-now login --id {spotify-app-id} --secret {spotify-app-secret}
 
-# 3. That's it >:)
+# 3.
+# Connect a RGB LED to (pwn) pins 11, 10, and 9 for `red`, `green`, and `blue` respectively,
+# and connect the Arduino to the computer.
+
+# 4. you're ready >:)
 spotify-now start
 ```
 
