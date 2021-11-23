@@ -1,16 +1,23 @@
 #!/usr/bin/env node
 
+import chalk from "chalk";
 import yargs from "yargs";
 
 yargs
   .scriptName("spotify-now")
   .command(
     "login [id] [secret]",
-    "log in to your spotify app.",
+    "Login to your spotify account before making api calls.",
     (yargs) => {
       yargs
-        .positional("id", { type: "string" })
-        .positional("secret", { type: "string" });
+        .option("id", {
+          alias: "i",
+          describe: "The spotify client id",
+        })
+        .option("secret", {
+          alias: "s",
+          describe: "The spotify client secret",
+        });
     },
     async (argv) => {
       const { getAuthUrl, getToken } = await import("./spotifyApiProvider/cli");
@@ -24,9 +31,25 @@ yargs
       await getToken(clientId, clientSecret);
     }
   )
-  .command("start", "start the app.", {}, async () => {
-    const { bootstrap } = await import("./core");
+  .command(
+    "start [pins]",
+    "Start the app.",
+    (yargs) => {
+      yargs.option("pins", {
+        alias: "p",
+        array: true,
+        type: "number",
+        default: [11, 10, 9],
+        describe: "light up the led using the given pins(r, g, b)",
+      });
+    },
+    async (argv) => {
+      const { bootstrap } = await import("./core");
 
-    bootstrap();
-  })
+      const pins = argv.pins as [number, number, number];
+      console.log(chalk.green(`Starting the app using pins ${pins}...`));
+
+      bootstrap(pins);
+    }
+  )
   .help().argv;

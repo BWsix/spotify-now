@@ -2,13 +2,13 @@ import { Board, Led } from "johnny-five";
 import { refreshTokenWhenExpire } from "../spotifyApiProvider";
 import { getColor } from "./getColor";
 
-export async function bootstrap() {
+export async function bootstrap(
+  pins: [r: number, g: number, b: number] = [11, 10, 9]
+) {
   const board = new Board({ repl: false });
 
   board.on("ready", async () => {
-    const anode = new Led.RGB({
-      pins: [11, 10, 9],
-    });
+    const anode = new Led.RGB({ pins });
 
     const handleColor = async () => {
       const color = await refreshTokenWhenExpire(getColor);
