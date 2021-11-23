@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import spotifyApi from "../spotifyApiProvider";
 
 export async function getCurrentTrackImageUrl(currentTrackId: string) {
@@ -9,8 +10,8 @@ export async function getCurrentTrackImageUrl(currentTrackId: string) {
   } = await spotifyApi.getTrack(currentTrackId);
   const url = trackImages[0]?.url;
 
-  console.log(`now playing: ${trackName}`);
-  console.log(`cover url: ${url}`);
+  console.log(chalk.gray("Now playing:"), trackName);
+  console.log(chalk.gray("Cover image url:"), url);
 
   return url;
 }

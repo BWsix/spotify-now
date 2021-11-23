@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import fs from "fs";
 
 interface UserData {
@@ -8,7 +9,7 @@ interface UserData {
 }
 
 export function getUser(): UserData {
-  console.log("loading user data from `user.json`...");
+  console.log(chalk.gray("Loading data..."));
 
   const file = fs.readFileSync("user.json");
   const user: UserData = JSON.parse(file.toString());
@@ -17,7 +18,7 @@ export function getUser(): UserData {
 }
 
 export function saveUser(user: UserData) {
-  console.log("saving user data to `user.json`...");
+  console.log(chalk.gray("Saving data..."));
 
   fs.writeFileSync("user.json", JSON.stringify(user, null, 2));
 }

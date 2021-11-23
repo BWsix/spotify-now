@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { assert } from "console";
 import SpotifyWebApi from "spotify-web-api-node";
 import { getUser, saveUser } from "./fs_db";
@@ -23,13 +24,13 @@ export async function refreshTokenWhenExpire<T>(
   try {
     return await fn();
   } catch (error) {
-    console.log("access token error. (might be expired)");
+    console.log("Access token error. (might be expired)");
 
     const {
       body: { access_token },
     } = await spotifyApi.refreshAccessToken();
 
-    console.log("access token refreshed.");
+    console.log(chalk.yellow("Access token refreshed."));
 
     spotifyApi.setAccessToken(access_token);
     saveUser({

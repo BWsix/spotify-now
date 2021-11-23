@@ -26,6 +26,9 @@ yargs
       const clientSecret = argv.secret as string;
 
       const url = await getAuthUrl(clientId, clientSecret);
+      console.log(
+        chalk.yellow("Follow the link below and login to your spotify account:")
+      );
       console.log(url);
 
       await getToken(clientId, clientSecret);

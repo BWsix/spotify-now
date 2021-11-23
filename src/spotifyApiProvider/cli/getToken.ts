@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import express from "express";
 import { saveUser } from "../fs_db";
 import { getSpotifyAPi } from "./spotifyApiBootstrap";
@@ -15,7 +16,7 @@ export async function getToken(clientId: string, clientSecret: string) {
       const { access_token, refresh_token } = result.body;
       saveUser({ access_token, refresh_token, clientId, clientSecret });
 
-      console.log("OK.");
+      console.log(chalk.yellow("OK."));
       res.send("You can close this window now.");
       process.exit(0);
     });
