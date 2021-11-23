@@ -1,10 +1,15 @@
+import chalk from "chalk";
 import { Board, Led } from "johnny-five";
 import { refreshTokenWhenExpire } from "../spotifyApiProvider";
 import { getColor } from "./getColor";
 
 export async function bootstrap(
-  pins: [r: number, g: number, b: number] = [11, 10, 9]
+  pins: [r: number, g: number, b: number],
+  interval: number
 ) {
+  console.log(chalk.green(`Starting the app using pins: ${pins}`));
+  console.log(chalk.green(`Time interval between updates: ${interval}`));
+
   const board = new Board({ repl: false });
 
   board.on("ready", async () => {
@@ -19,6 +24,6 @@ export async function bootstrap(
 
     await handleColor();
     anode.on();
-    board.loop(30 * 1000, handleColor);
+    board.loop(interval * 1000, handleColor);
   });
 }

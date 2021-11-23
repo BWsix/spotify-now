@@ -35,24 +35,31 @@ yargs
     }
   )
   .command(
-    "start [pins]",
+    "start [pins] [interval]",
     "Start the app.",
     (yargs) => {
-      yargs.option("pins", {
-        alias: "p",
-        array: true,
-        type: "number",
-        default: [11, 10, 9],
-        describe: "light up the led using the given pins(r, g, b)",
-      });
+      yargs
+        .option("pins", {
+          alias: "p",
+          array: true,
+          type: "number",
+          default: [11, 10, 9],
+          describe: "Light up the led using the given pins(r, g, b)",
+        })
+        .option("interval", {
+          alias: "i",
+          type: "number",
+          default: 20,
+          describe: "Time interval between updates. (in second)",
+        });
     },
     async (argv) => {
       const { bootstrap } = await import("./core");
 
       const pins = argv.pins as [number, number, number];
-      console.log(chalk.green(`Starting the app using pins ${pins}...`));
+      const interval = argv.interval as number;
 
-      bootstrap(pins);
+      bootstrap(pins, interval);
     }
   )
   .help().argv;
