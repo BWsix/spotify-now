@@ -11,7 +11,7 @@ export function isUser() {
   return fs.existsSync("user.json");
 }
 
-export function getUser(): UserData {
+export function getUser() {
   const file = fs.readFileSync("user.json");
   const user: UserData = JSON.parse(file.toString());
 
@@ -20,6 +20,11 @@ export function getUser(): UserData {
 
 export function saveUser(user: UserData) {
   fs.writeFileSync("user.json", JSON.stringify(user, null, 2));
+}
+
+export function updateUser(user: Partial<UserData>) {
+  const _user = getUser();
+  saveUser({ ..._user, ...user });
 }
 
 export function deleteUser() {

@@ -1,8 +1,6 @@
 import chalk from "chalk";
-import { getUser, saveUser } from "./db";
+import { updateUser } from "./db";
 import spotifyApi from "./provider";
-
-const user = getUser();
 
 export async function refreshTokenWhenExpire<T>(
   fn: () => Promise<T> | T
@@ -19,12 +17,7 @@ export async function refreshTokenWhenExpire<T>(
     console.log(chalk.yellow("Access token refreshed."));
 
     spotifyApi.setAccessToken(access_token);
-    saveUser({
-      access_token,
-      refresh_token: user.refresh_token,
-      clientId: user.clientId,
-      clientSecret: user.clientSecret,
-    });
+    updateUser({ access_token });
 
     return await fn();
   }
