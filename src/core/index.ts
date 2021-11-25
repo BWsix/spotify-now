@@ -1,5 +1,5 @@
 import { Board, Led } from "johnny-five";
-import { refreshTokenWhenExpire } from "../spotifyApiProvider";
+import { refreshTokenWhenExpire } from "../spotifyApi";
 import { getColor } from "./getColor";
 
 export async function bootstrap(

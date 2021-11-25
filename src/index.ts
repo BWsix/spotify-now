@@ -20,7 +20,7 @@ yargs
         });
     },
     async (argv) => {
-      const { getAuthUrl, getToken } = await import("./spotifyApiProvider/cli");
+      const { getAuthUrl, getToken } = await import("./spotifyApi/authGrant");
 
       const clientId = argv.id as string;
       const clientSecret = argv.secret as string;

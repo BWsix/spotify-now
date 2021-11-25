@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import spotifyApi from "../spotifyApiProvider";
+import spotifyApi from "../spotifyApi";
 
 export async function getCurrentTrackImageUrl(currentTrackId: string) {
   const {
