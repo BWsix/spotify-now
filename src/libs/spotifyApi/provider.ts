@@ -1,7 +1,7 @@
 import SpotifyWebApi from "spotify-web-api-node";
 import { getUser } from "./db";
 
-export const user = getUser();
+const user = getUser();
 
 const spotifyApi = new SpotifyWebApi({
   accessToken: user.access_token,
@@ -11,5 +11,3 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 export default spotifyApi;
-
-export { refreshTokenWhenExpire } from "./refreshTokenWhenExpire";

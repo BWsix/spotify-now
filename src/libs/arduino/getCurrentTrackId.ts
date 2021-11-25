@@ -1,4 +1,4 @@
-import spotifyApi from "../spotifyApi";
+import spotifyApi from "../spotifyApi/provider";
 
 export async function getCurrentTrackId() {
   const currentPlayingResult = await spotifyApi.getMyCurrentPlayingTrack();

@@ -1,5 +1,5 @@
 {
-  "bin": "dist/index.js",
+  "bin": "dist/cli/index.js",
   "description": "spotify, rgb and bob.",
   "homepage": "https://github.com/BWsix/spotify-now#spotify-now",
   "license": "MIT",
@@ -58,7 +58,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "cli": "ts-node src/index.ts",
+    "cli": "ts-node src/cli/index.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
     "watch": "nodemon -e ts -w ./src -x yarn ts-node"

@@ -1,6 +1,8 @@
 import chalk from "chalk";
-import { saveUser } from "./db";
-import spotifyApi, { user } from ".";
+import { getUser, saveUser } from "./db";
+import spotifyApi from "./provider";
+
+const user = getUser();
 
 export async function refreshTokenWhenExpire<T>(
   fn: () => Promise<T> | T
