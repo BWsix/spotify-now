@@ -55,4 +55,10 @@ yargs
       bootstrap(pins);
     }
   )
+  .command("*", "", {}, async () => {
+    const { printLogo } = await import("./cli");
+
+    printLogo();
+  })
+  .demandCommand()
   .help().argv;
