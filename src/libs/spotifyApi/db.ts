@@ -1,16 +1,17 @@
-import chalk from "chalk";
 import fs from "fs";
 
-interface UserData {
+export interface UserData {
   access_token: string;
   refresh_token: string;
   clientId: string;
   clientSecret: string;
 }
 
-export function getUser(): UserData {
-  console.log(chalk.gray("Loading data..."));
+export function isUser() {
+  return fs.existsSync("user.json");
+}
 
+export function getUser() {
   const file = fs.readFileSync("user.json");
   const user: UserData = JSON.parse(file.toString());
 
@@ -18,7 +19,14 @@ export function getUser(): UserData {
 }
 
 export function saveUser(user: UserData) {
-  console.log(chalk.gray("Saving data..."));
-
   fs.writeFileSync("user.json", JSON.stringify(user, null, 2));
+}
+
+export function updateUser(user: Partial<UserData>) {
+  const _user = getUser();
+  saveUser({ ..._user, ...user });
+}
+
+export function deleteUser() {
+  fs.unlinkSync("user.json");
 }

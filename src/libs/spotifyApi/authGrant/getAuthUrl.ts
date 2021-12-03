@@ -1,6 +1,6 @@
-import SpotifyWebApi from "spotify-web-api-node";
+import { getSpotifyApi } from "./getSpotifyApi";
 
-export const scopeList = [
+const scopeList = [
   // "ugc-image-upload",
   // "playlist-modify-private",
   // "playlist-read-private",
@@ -21,10 +21,8 @@ export const scopeList = [
   // "user-follow-read",
 ];
 
-export async function getSpotifyAPi(clientId: string, clientSecret: string) {
-  return new SpotifyWebApi({
-    clientId,
-    clientSecret,
-    redirectUri: "http://localhost:6969",
-  });
+export async function getAuthUrl(clientId: string, clientSecret: string) {
+  const spotifyApi = await getSpotifyApi(clientId, clientSecret);
+
+  return spotifyApi.createAuthorizeURL(scopeList, "");
 }
