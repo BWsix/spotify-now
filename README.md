@@ -1,27 +1,34 @@
-# spotify Now
+# Spotify Now
 
 ## Getting Started
 
-```bash
-# 1. Install the package (only works with yarn for now)
-yarn global add spotify-now
+1. Install the package
 
-# 2. Initialize your app by running the following command.
-# (note that you need to add `http://localhost:6969` to your `Redirect URIs` from the spotify dashboard)
-spotify-now login --id {spotify-app-id} --secret {spotify-app-secret}
+   ```bash
+   yarn global add spotify-now
+   ```
 
-# 3.
-# Connect a RGB LED to (pwn) pins 11, 10, and 9 for `red`, `green`, and `blue` respectively,
-# and connect the Arduino to the computer.
+2. Initialize your app by running the following command. \\
+   (note that you need to add `http://localhost:6969` to your `Redirect URIs` from the [Spotify App Dashboard](https://developer.spotify.com/dashboard/applications))
 
-# 4. you're ready >:)
-spotify-now start
-```
+   ```bash
+   spotify-now login --id {spotify-app-id} --secret {spotify-app-secret}
+   ```
 
-## Useful Resources
+3. Firmware
 
-- Troubleshooting - Arduino
-  https://github.com/rwaldron/johnny-five/wiki/Getting-Started#troubleshooting
+   1. Open [Arduino IDE](https://www.arduino.cc/en/software)
 
-- Spotify for Developers - Dashboard
-  https://developer.spotify.com/dashboard/applications
+   1. Verify correct port and board
+
+   1. Navigate to File > Examples > Firmata > StandardFirmataPlus
+
+   1. Load sketch onto board.
+
+4. Connect a RGB LED to (pwn) pins 11, 10, and 9 for `red`, `green`, and `blue` respectively,
+
+5. Start the app
+
+   ```bash
+   spotify-now start
+   ```
