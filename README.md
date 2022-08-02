@@ -12,7 +12,7 @@
    (note that you need to add `http://localhost:6969` to your `Redirect URIs` from the [Spotify App Dashboard](https://developer.spotify.com/dashboard/applications))
 
    ```bash
-   spotify-now login --id {spotify-app-id} --secret {spotify-app-secret}
+   spotify-now login --id <spotify-app-id> --secret <spotify-app-secret>
    ```
 
 3. Firmware
