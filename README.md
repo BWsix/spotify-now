@@ -32,3 +32,7 @@
    ```bash
    spotify-now start
    ```
+
+## DEMO
+
+<https://youtube.com/shorts/pZczC2deG0c>
