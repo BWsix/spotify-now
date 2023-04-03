@@ -1,5 +1,12 @@
 # Spotify Now
 
+![photo](https://user-images.githubusercontent.com/57709309/229525582-7e6ca388-c7d6-4a48-af74-42c3a02eea42.jpg)
+
+## 2023.04.03 update
+- this project only works with node version 12, as johnny-five is being used
+- when node version is set to 12, `yarn global install` might or might not work depending on what global packages you installed
+- therefore, the best way to try this project out is to clone and build the project yourself
+
 ## Getting Started
 
 1. Install the package
@@ -35,4 +42,4 @@
 
 ## DEMO
 
-<https://youtube.com/shorts/pZczC2deG0c>
+<https://www.youtube.com/watch?v=yVyv0xTs-cE>
